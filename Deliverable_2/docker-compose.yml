@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  dagster:
+    image
+
+  pgdb:
+    image: postgres:alpine3.19
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - "./pg_data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+
+  pgadmin4:
+    image: dpage/pgadmin4:8.5
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
