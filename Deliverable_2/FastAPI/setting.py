@@ -1,8 +1,5 @@
 import os
 
-DAGSTER_IO_STORAGE_PATH = "data/outputs"
-RAW_CSV_PATH = "data/raw/dailycheckins.csv"
-
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_DB = os.getenv("POSTGRES_DB")

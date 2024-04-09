@@ -1,15 +1,18 @@
 version: '3.9'
+
+volumes:
+  pg_data:
+  pgadmin_data:
+
 services:
-  dagster:
-    image
 
   pgdb:
     image: postgres:alpine3.19
     restart: always
     env_file:
-      - .env
+      - Thinking-Machine-Project/.env
     volumes:
-      - "./pg_data:/var/lib/postgresql/data"
+      - pg_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
@@ -21,3 +24,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  web:
+    build: "./FastAPI/"
+    environment:
+      - FastAPI/.env
+    ports:
+      - "8000:80"

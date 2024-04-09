@@ -1,1 +1,9 @@
-.env
+#env
+Thinking-Machine-Project/.env
+
+#docker volumes
+pg_data
+pgadmin_data
+
+#pycharm
+.idea
