@@ -1,0 +1,9 @@
+#env
+Deliverable_2/Thinking-Machine-Project/.env
+
+#docker volumes
+Deliverable_2/pg_data
+Deliverable_2/pgadmin_data
+
+#pycharm
+.idea
