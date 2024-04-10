@@ -55,14 +55,15 @@ docker compose up -d --build
     3. **pgdamin4**: administration and development platform for PostgreSQL -> http://localhost:8080/
     4. **dagster**: pipeline orchestration tool to trigger the ingestion -> http://localhost:3000/
 
-
 # How to test
 
 1. After run the docker compose we will exec into the dagster's container to run assets test
+
 ```commandline
-docker compose exec -it dagster bash
+docker compose exec -it dagster pytest .
+```
 
-cd Thinking_Machine_Project/tests
-
-pytest
+2. Like dagster asset test, the FastAPI test will exec into web container
+```commandline
+docker compose exec -it web pytest .
 ```

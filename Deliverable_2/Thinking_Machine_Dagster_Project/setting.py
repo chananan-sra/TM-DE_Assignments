@@ -1,6 +1,4 @@
 import os
-from dotenv import load_dotenv
-
 
 DAGSTER_IO_STORAGE_PATH = "data/outputs"
 RAW_CSV_PATH = "data/raw/dailycheckins.csv"
