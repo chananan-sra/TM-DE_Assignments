@@ -6,7 +6,7 @@ services:
     image: postgres:alpine3.19
     restart: always
     env_file:
-      - Thinking-Machine-Project/.env
+      - Thinking_Machine_Dagster_Project/.env
     volumes:
       - pg_data:/var/lib/postgresql/data
     ports:
@@ -42,15 +42,15 @@ services:
 
 
   dagster:
-    build: ./Thinking-Machine-Project/
+    build: Thinking_Machine_Dagster_Project/
     env_file:
-      - Thinking-Machine-Project/.env
-    volumes:
-      - ./Thinking-Machine-Project:/opt/dagster/app
+      - Thinking_Machine_Dagster_Project/.env
     networks:
       - thinking-machine-network
     depends_on:
       - pgdb
+    ports:
+      - "3000:3000"
 
 
 volumes:

@@ -1,6 +1,7 @@
 import pandas as pd
 from dagster import asset
-from sqlalchemy import MetaData, Column, Integer, String, Float, Table
+from sqlalchemy import MetaData, Column, Integer, String, Float, Table, DateTime, text
+from datetime import datetime
 
 from setting import RAW_CSV_PATH
 from .common.asset_utils import date_parser
@@ -11,7 +12,7 @@ from .common.connection import get_postgres_connection, get_postgres_engine
     name='create_daily_checkins_table',
     group_name='daily_checkins',
 )
-def create_daily_checkins_table():
+def create_daily_checkins_table() -> None:
     """
     Creates daily checkin table before inserting into database.
     """
@@ -26,13 +27,29 @@ def create_daily_checkins_table():
                            Column('timestamp', String),
                            Column('hours', Float),
                            Column('project', String),
+                           Column('create_at', DateTime(timezone=True), server_default=datetime.utcnow)
                            )
     metadata.create_all(engine)
 
 
 @asset(
+    name='truncate_daily_checkins_table',
+    group_name='daily_checkins',
+    deps=['create_daily_checkins_table']
+)
+def truncate_daily_checkins_table() -> None:
+    """
+    Truncate daily checkins table before inserting new records.
+    """
+    connection = get_postgres_connection()
+
+    with connection as conn:
+        conn.execute(text(f'TRUNCATE TABLE daily_checkins'))
+
+
+@asset(
     name='daily_checkins_file',
-    deps=['create_daily_checkins_table'],
+    deps=['truncate_daily_checkins_table'],
     group_name='daily_checkins',
 )
 def load_csv_with_timezone_converted() -> pd.DataFrame:
@@ -50,9 +67,7 @@ def load_csv_with_timezone_converted() -> pd.DataFrame:
     cols = [*cols_dict]
 
     df = pd.read_csv(raw_path, usecols=cols, dtype=cols_dict)
-
     df['timestamp'] = df['timestamp'].map(date_parser)
-    df.dropna(inplace=True)
 
     return df
 
@@ -69,4 +84,4 @@ def daily_checkins_table(daily_checkins_file: pd.DataFrame):
     conn = get_postgres_connection()
     with conn:
         df = daily_checkins_file
-        df.to_sql(name="daily_checkins", con=conn, if_exists='append', index=False)
+        df.to_sql(name='daily_checkins', con=conn, if_exists='append', index=False)

@@ -6,7 +6,6 @@ setup(
     install_requires=[
         "dagster",
         "psycopg2-binary",
-        "psycopg2",
         "dateparser",
         "pandas",
         "sqlalchemy"

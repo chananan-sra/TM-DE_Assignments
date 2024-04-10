@@ -1,6 +1,6 @@
-from dagster import Definitions, load_assets_from_modules, IOManager, FilesystemIOManager
+from dagster import Definitions, load_assets_from_modules, FilesystemIOManager
 
-from .assets import daily_checkins
+from Thinking_Machine_Project.assets import daily_checkins
 
 daily_checkins_assets = load_assets_from_modules([daily_checkins])
 
