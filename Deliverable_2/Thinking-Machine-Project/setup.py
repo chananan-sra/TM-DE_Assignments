@@ -5,7 +5,6 @@ setup(
     packages=find_packages(exclude=["Thinking_Machine_Project_tests"]),
     install_requires=[
         "dagster",
-        "dagster-cloud",
         "psycopg2-binary",
         "psycopg2",
         "dateparser",
