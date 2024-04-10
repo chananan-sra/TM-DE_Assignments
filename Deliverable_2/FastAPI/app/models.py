@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, TIMESTAMP, Float, Integer, DateTime, func
+from sqlalchemy import Column, String, DateTime, Float, Integer
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -10,6 +10,6 @@ class Checkin(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user = Column(String)
-    timestamp = Column(TIMESTAMP)
+    timestamp = Column(DateTime(timezone=True))
     hours = Column(Float)
     project = Column(String)

@@ -31,7 +31,7 @@ You can specify new Python dependencies in `setup.py`.
 Tests are in the `Thinking_Machine_Project_tests` directory and you can run tests using `pytest`:
 
 ```bash
-pytest Thinking_Machine_Project_tests
+pytest tests
 ```
 
 ### Schedules and sensors

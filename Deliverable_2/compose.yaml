@@ -3,6 +3,7 @@ version: '3.9'
 services:
 
   pgdb:
+    container_name: pgdb
     image: postgres:alpine3.19
     restart: always
     env_file:
@@ -15,6 +16,7 @@ services:
       - thinking-machine-network
 
   pgadmin4:
+    container_name: pgadmin4
     image: dpage/pgadmin4:8.5
     restart: always
     environment:
@@ -30,6 +32,7 @@ services:
       - pgdb
 
   web:
+    container_name: web
     build: "./FastAPI/"
     env_file:
       - FastAPI/.env
@@ -40,8 +43,8 @@ services:
     depends_on:
       - pgdb
 
-
   dagster:
+    container_name: dagster
     build: Thinking_Machine_Dagster_Project/
     env_file:
       - Thinking_Machine_Dagster_Project/.env

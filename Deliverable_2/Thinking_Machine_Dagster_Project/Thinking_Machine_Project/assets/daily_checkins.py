@@ -24,10 +24,9 @@ def create_daily_checkins_table() -> None:
     daily_checkins = Table(table_name, metadata,
                            Column('id', Integer, primary_key=True),
                            Column('user', String),
-                           Column('timestamp', String),
+                           Column('timestamp', DateTime(timezone=True)),
                            Column('hours', Float),
                            Column('project', String),
-                           Column('create_at', DateTime(timezone=True), server_default=datetime.utcnow)
                            )
     metadata.create_all(engine)
 
@@ -41,9 +40,8 @@ def truncate_daily_checkins_table() -> None:
     """
     Truncate daily checkins table before inserting new records.
     """
-    connection = get_postgres_connection()
 
-    with connection as conn:
+    with get_postgres_connection() as conn:
         conn.execute(text(f'TRUNCATE TABLE daily_checkins'))
 
 
@@ -81,7 +79,7 @@ def daily_checkins_table(daily_checkins_file: pd.DataFrame):
     """
     Write daily checkin data to database
     """
-    conn = get_postgres_connection()
-    with conn:
+
+    with get_postgres_connection() as conn:
         df = daily_checkins_file
         df.to_sql(name='daily_checkins', con=conn, if_exists='append', index=False)

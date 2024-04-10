@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="Thinking_Machine_Project",
-    packages=find_packages(exclude=["Thinking_Machine_Project_tests"]),
+    packages=find_packages(exclude=["tests"]),
     install_requires=[
         "dagster",
         "psycopg2-binary",

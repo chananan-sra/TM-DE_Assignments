@@ -1,0 +1,7 @@
+fastapi==0.110.1
+SQLAlchemy==2.0.29
+python-dotenv==1.0.1
+setuptools==68.2.0
+dateparser==1.2.0
+pandas==2.2.1
+dagster==1.7.0

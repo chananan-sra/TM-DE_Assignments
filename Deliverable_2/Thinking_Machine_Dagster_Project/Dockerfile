@@ -2,6 +2,7 @@ FROM python:3.10-slim
 
 ENV DAGSTER_HOME=/opt/dagster/dagster_home
 ENV DAGSTER_APP=/opt/dagster/app
+ENV PYTHONPATH "${PYTHONPATH}:$DAGSTER_APP"
 
 RUN mkdir -p $DAGSTER_HOME $DAGSTER_APP
 
@@ -17,6 +18,7 @@ COPY dagster.yaml $DAGSTER_HOME/
 
 
 WORKDIR $DAGSTER_APP
+
 
 EXPOSE 3000
 

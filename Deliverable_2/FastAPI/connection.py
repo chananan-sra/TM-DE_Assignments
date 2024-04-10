@@ -1,14 +1,11 @@
 from sqlalchemy import create_engine, Engine
 from sqlalchemy.engine import Connection
 
-# from setting import POSTGRES_PORT, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_USER
+from setting import POSTGRES_PORT, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_USER, POSTGRES_HOST
 
 
 def get_postgres_uri() -> str:
-    """
-    Can't get the credentials from env variables. Causing bad practice for this.
-    """
-    return f"postgresql://admin:admin@pgdb:5432/TMDB"
+    return f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 
 def get_postgres_engine() -> Engine:
