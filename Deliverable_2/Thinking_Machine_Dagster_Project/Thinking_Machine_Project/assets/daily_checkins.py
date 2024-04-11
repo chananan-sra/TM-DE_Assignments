@@ -1,7 +1,6 @@
 import pandas as pd
 from dagster import asset
 from sqlalchemy import MetaData, Column, Integer, String, Float, Table, DateTime, text
-from datetime import datetime
 
 from setting import RAW_CSV_PATH
 from .common.asset_utils import date_parser

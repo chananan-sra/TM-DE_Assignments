@@ -6,9 +6,6 @@
   create_at and update_at column
 - Or create sensors to check if there's files at the source location. Ingest it and remove or back-up the file
 
-### Draw a data architecture showing different components of your ETL process.
-
-![diagram.png](diagram.png)
 
 ### How will you verify the correctness of the ingested data?
 
