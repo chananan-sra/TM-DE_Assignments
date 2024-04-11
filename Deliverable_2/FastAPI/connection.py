@@ -1,11 +1,11 @@
 from sqlalchemy import create_engine, Engine
 from sqlalchemy.engine import Connection
 
-from setting import POSTGRES_PORT, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_USER, POSTGRES_HOST
+from setting import FAST_POSTGRES_PORT, FAST_POSTGRES_PASSWORD, FAST_POSTGRES_DB, FAST_POSTGRES_USER, FAST_POSTGRES_HOST
 
 
 def get_postgres_uri() -> str:
-    return f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    return f"postgresql://{FAST_POSTGRES_USER}:{FAST_POSTGRES_PASSWORD}@{FAST_POSTGRES_HOST}:{FAST_POSTGRES_PORT}/{FAST_POSTGRES_DB}"
 
 
 def get_postgres_engine() -> Engine:

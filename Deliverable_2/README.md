@@ -28,6 +28,7 @@ This pipeline's goal is to clean and extract daily checkin data into PostgreSQL 
 - All of these steps except the source (csv files) will be deployed via Docker
 
 # How to deploy
+Before we start, please download the [.env](https://drive.google.com/file/d/1CyU7EvLCwjMfdnmEH7BSgjT_cgdVs-jR/view?usp=sharing) file and place it in this directory (Deliverable_2/)
 
 1. First we will put the csv file into data/raw
 2. Activate virtual environment at root of this repository (TMDE)

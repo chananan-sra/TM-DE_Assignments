@@ -1,12 +1,7 @@
 import os
 
-from dotenv import load_dotenv
-
-fastapi_env_path = 'Deliverable_2/FastAPI/.env'
-load_dotenv(fastapi_env_path)
-
-POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
-POSTGRES_USER = os.getenv("POSTGRES_USER")
-POSTGRES_DB = os.getenv("POSTGRES_DB")
-POSTGRES_PORT = os.getenv("POSTGRES_PORT")
-POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+FAST_POSTGRES_PASSWORD = os.getenv("FAST_POSTGRES_PASSWORD")
+FAST_POSTGRES_USER = os.getenv("FAST_POSTGRES_USER")
+FAST_POSTGRES_DB = os.getenv("FAST_POSTGRES_DB")
+FAST_POSTGRES_PORT = os.getenv("FAST_POSTGRES_PORT")
+FAST_POSTGRES_HOST = os.getenv("FAST_POSTGRES_HOST")
